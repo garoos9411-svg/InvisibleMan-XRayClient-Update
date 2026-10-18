@@ -1,7 +1,5 @@
 using System;
-using System.Windows;
 using Wpf.Ui.Appearance;
-using Wpf.Ui.Controls;
 
 namespace InvisibleManXRay.Utilities
 {
@@ -39,16 +37,19 @@ namespace InvisibleManXRay.Utilities
         };
 
         /// <summary>
-        /// Re-evaluates the current backdrop of every open window so the
-        /// Mica material stays in sync with the freshly applied palette.
+        /// Applies the resolved palette across the whole application. The
+        /// Mica/Acrylic backdrops are kept in sync automatically by the
+        /// <see cref="Wpf.Ui.Appearance.SystemThemeWatcher"/> registered for
+        /// every <see cref="FluentWindow"/> (see MainWindow), so no manual
+        /// backdrop refresh is required here.
         /// </summary>
-        public static void RefreshWindowBackdrops()
+        public static void Apply(AppThemeMode mode)
         {
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window is FluentWindow fluentWindow)
-                    fluentWindow.RefreshBackdrop();
-            }
+            ApplicationTheme theme = Resolve(mode);
+
+            // updateWpfuiTheme: true -> repaints all WPF-UI controls,
+            // forceBackground: false -> lets the active backdrop (Mica) show through.
+            ApplicationThemeManager.Apply(theme, updateWpfuiTheme: true, forceBackground: false);
         }
 
         private static ApplicationTheme DetectSystemTheme()

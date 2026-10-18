@@ -190,7 +190,12 @@
     <system:String x:Key="Lang.Settings.Subtitle">Сделайте клиент удобным именно для вас.</system:String>
     <system:String x:Key="Lang.Settings.Appearance">Внешний вид</system:String>
     <system:String x:Key="Lang.Settings.Theme">Тема</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Dark">Тёмная</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Light">Светлая</system:String>
+    <system:String x:Key="Lang.Settings.Theme.SystemMode">Системная</system:String>
     <system:String x:Key="Lang.Settings.Theme.System">Как в Windows</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Dark.Description">Глубокая обсидиановая палитра — комфортно для глаз вечером.</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Light.Description">Светлые воздушные поверхности для работы днём.</system:String>
     <system:String x:Key="Lang.Settings.Theme.Description">Палитра автоматически переключается между светлой и тёмной вслед за системой.</system:String>
     <system:String x:Key="Lang.Settings.Application">Приложение</system:String>
     <system:String x:Key="Lang.Settings.Open">Расширенные настройки</system:String>

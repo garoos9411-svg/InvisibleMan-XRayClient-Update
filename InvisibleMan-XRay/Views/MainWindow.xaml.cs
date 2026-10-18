@@ -163,7 +163,7 @@ namespace InvisibleManXRay
             );
 
             // Paint the shell with the persisted palette before it becomes visible.
-            ApplicationThemeManager.Apply(ThemeUtility.Resolve(settingsViewModel.ThemeMode));
+            ThemeUtility.Apply(settingsViewModel.ThemeMode);
 
             UpdateUI();
         }

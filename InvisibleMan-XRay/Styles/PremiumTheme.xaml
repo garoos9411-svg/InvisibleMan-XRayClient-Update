@@ -237,4 +237,32 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Theme segment visibility, driven by SettingsViewModel.ThemeMode -->
+    <Style x:Key="Visible.WhenThemeDark" TargetType="FrameworkElement">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ThemeMode}" Value="Dark">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Visible.WhenThemeLight" TargetType="FrameworkElement">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ThemeMode}" Value="Light">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Visible.WhenThemeSystem" TargetType="FrameworkElement">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ThemeMode}" Value="System">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

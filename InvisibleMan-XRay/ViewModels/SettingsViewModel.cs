@@ -1,7 +1,6 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Wpf.Ui.Appearance;
 
 namespace InvisibleManXRay.ViewModels
 {
@@ -30,10 +29,7 @@ namespace InvisibleManXRay.ViewModels
 
         partial void OnThemeModeChanged(AppThemeMode value)
         {
-            ApplicationTheme theme = ThemeUtility.Resolve(value);
-
-            ApplicationThemeManager.Apply(theme);
-            ThemeUtility.RefreshWindowBackdrops();
+            ThemeUtility.Apply(value);
 
             onThemeChanged?.Invoke(ThemeUtility.ToSettingName(value));
         }
