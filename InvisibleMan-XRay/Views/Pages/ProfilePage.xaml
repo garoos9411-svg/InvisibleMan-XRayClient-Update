@@ -1,0 +1,464 @@
+<Page x:Class="InvisibleManXRay.Views.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:components="clr-namespace:InvisibleManXRay.Components"
+      xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+      Title="Profile"
+      Background="Transparent"
+      FontFamily="{StaticResource SegoeUI}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled"
+                  Padding="32,20,32,32">
+        <StackPanel MaxWidth="1080" HorizontalAlignment="Stretch">
+
+            <StackPanel Margin="2,4,0,24">
+                <TextBlock Style="{StaticResource Text.PageTitle}"
+                           Text="{DynamicResource Lang.Profile.Title}"/>
+                <TextBlock Style="{StaticResource Text.PageSubtitle}"
+                           Margin="0,6,0,0"
+                           Text="{DynamicResource Lang.Profile.Subtitle}"/>
+            </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Style="{StaticResource Surface.Card}"
+                        Margin="0,0,10,0"
+                        Padding="28"
+                        MinHeight="438"
+                        ClipToBounds="True">
+                    <Grid>
+                        <Border Background="{DynamicResource Accent.Hero.Background}"
+                                CornerRadius="{StaticResource Radius.Card}"
+                                Margin="-28"
+                                IsHitTestVisible="False"/>
+                        <Ellipse Width="320" Height="320"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Top"
+                                 Margin="0,-170,-100,0"
+                                 Fill="{DynamicResource Accent.Hero.Glow}"
+                                 IsHitTestVisible="False"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Border CornerRadius="{StaticResource Radius.Button}"
+                                        Padding="12,6"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="1">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="{DynamicResource Accent.Danger.Soft.Brush}"/>
+                                            <Setter Property="BorderBrush" Value="{DynamicResource Accent.Danger.Border.Brush}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding State}" Value="Connecting">
+                                                    <Setter Property="Background" Value="{DynamicResource Accent.Traffic.Soft.Brush}"/>
+                                                    <Setter Property="BorderBrush" Value="{DynamicResource Accent.Traffic.Border.Brush}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="Connected">
+                                                    <Setter Property="Background" Value="{DynamicResource Accent.Success.Soft.Brush}"/>
+                                                    <Setter Property="BorderBrush" Value="{DynamicResource Accent.Success.Border.Brush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="7" Height="7"
+                                                 Margin="0,0,8,0"
+                                                 VerticalAlignment="Center">
+                                            <Ellipse.Style>
+                                                <Style TargetType="Ellipse">
+                                                    <Setter Property="Fill" Value="{DynamicResource Accent.Danger.Brush}"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding State}" Value="Connecting">
+                                                            <Setter Property="Fill" Value="{DynamicResource Accent.Traffic.Brush}"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding State}" Value="Connected">
+                                                            <Setter Property="Fill" Value="{DynamicResource Accent.Success.Brush}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Ellipse.Style>
+                                        </Ellipse>
+                                        <TextBlock FontSize="12"
+                                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Text" Value="{DynamicResource Lang.Profile.Status.Disconnected}"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding State}" Value="Connecting">
+                                                            <Setter Property="Text" Value="{DynamicResource Lang.Profile.Status.Connecting}"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding State}" Value="Connected">
+                                                            <Setter Property="Text" Value="{DynamicResource Lang.Profile.Status.Connected}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Border>
+
+                                <ui:Button Style="{StaticResource Button.Icon.Ghost}"
+                                           HorizontalAlignment="Right"
+                                           ToolTip="{DynamicResource Lang.Navigation.Servers}"
+                                           Click="OnManageServersClick">
+                                    <ui:Button.Icon>
+                                        <ui:SymbolIcon Symbol="Server24" FontSize="16"/>
+                                    </ui:Button.Icon>
+                                </ui:Button>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0,18,0,12"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <Ellipse Width="252" Height="252"
+                                         Fill="{DynamicResource Accent.Hero.Glow}"
+                                         Opacity="0.8">
+                                    <Ellipse.Style>
+                                        <Style TargetType="Ellipse">
+                                            <Setter Property="Opacity" Value="0.8"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding State}" Value="Connected">
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                 From="0.45" To="0.95"
+                                                                                 Duration="0:0:1.6"
+                                                                                 AutoReverse="True"
+                                                                                 RepeatBehavior="Forever">
+                                                                    <DoubleAnimation.EasingFunction>
+                                                                        <SineEase EasingMode="EaseInOut"/>
+                                                                    </DoubleAnimation.EasingFunction>
+                                                                </DoubleAnimation>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Ellipse.Style>
+                                </Ellipse>
+                                <Ellipse Width="216" Height="216"
+                                         Fill="{DynamicResource SubtleFillColorSecondaryBrush}"
+                                         Stroke="{DynamicResource Accent.Hero.Ring}"
+                                         StrokeThickness="1.5"/>
+                                <Ellipse Width="178" Height="178"
+                                         Fill="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                         Stroke="{DynamicResource CardStrokeColorDefaultBrush}"
+                                         StrokeThickness="1"/>
+                                <ui:SymbolIcon Symbol="ShieldCheckmark24"
+                                               FontSize="54"
+                                               Foreground="{DynamicResource Accent.Success.Brush}">
+                                    <ui:SymbolIcon.Style>
+                                        <Style TargetType="ui:SymbolIcon">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding State}" Value="Connecting">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ui:SymbolIcon.Style>
+                                </ui:SymbolIcon>
+                                <components:Loading Width="72" Height="72"
+                                                    Foreground="{DynamicResource Accent.Traffic.Brush}"
+                                                    Visibility="Collapsed">
+                                    <components:Loading.Style>
+                                        <Style TargetType="components:Loading">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding State}" Value="Connecting">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </components:Loading.Style>
+                                </components:Loading>
+                            </Grid>
+
+                            <TextBlock Grid.Row="2"
+                                       Style="{StaticResource Text.Caption}"
+                                       TextAlignment="Center"
+                                       MaxWidth="380"
+                                       HorizontalAlignment="Center"
+                                       Text="{DynamicResource Lang.Profile.Status.Description}"/>
+
+                            <ui:Button x:Name="ConnectButton"
+                                       Grid.Row="3"
+                                       Margin="0,22,0,0"
+                                       HorizontalAlignment="Center"
+                                       RenderTransformOrigin="0.5,0.5">
+                                <ui:Button.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                </ui:Button.RenderTransform>
+                                <ui:Button.Effect>
+                                    <DropShadowEffect Color="{DynamicResource Accent.Success.Color}"
+                                                      BlurRadius="0"
+                                                      ShadowDepth="0"
+                                                      Direction="0"
+                                                      Opacity="0"
+                                                      RenderingBias="Performance"/>
+                                </ui:Button.Effect>
+                                <ui:Button.Style>
+                                    <Style TargetType="ui:Button" BasedOn="{StaticResource Button.Hero.Connect}">
+                                        <Setter Property="Command" Value="{Binding ConnectCommand}"/>
+                                        <Setter Property="Content" Value="{DynamicResource Lang.Profile.Connect}"/>
+                                        <Setter Property="Appearance" Value="Primary"/>
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <ui:SymbolIcon Symbol="Power24" FontSize="16"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding State}" Value="Connecting">
+                                                <Setter Property="Command" Value="{Binding CancelCommand}"/>
+                                                <Setter Property="Content" Value="{DynamicResource Lang.Cancel}"/>
+                                                <Setter Property="Appearance" Value="Secondary"/>
+                                                <Setter Property="Icon">
+                                                    <Setter.Value>
+                                                        <ui:SymbolIcon Symbol="Dismiss24" FontSize="16"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding State}" Value="Connected">
+                                                <Setter Property="Command" Value="{Binding DisconnectCommand}"/>
+                                                <Setter Property="Content" Value="{DynamicResource Lang.Profile.Disconnect}"/>
+                                                <Setter Property="Appearance" Value="Danger"/>
+                                                <Setter Property="Icon">
+                                                    <Setter.Value>
+                                                        <ui:SymbolIcon Symbol="Power24" FontSize="16"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding State}" Value="Disconnected"/>
+                                                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <MultiDataTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
+                                                                             To="26" Duration="0:0:0.25">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
+                                                                             To="0.55" Duration="0:0:0.25">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                             To="1.03" Duration="0:0:0.25">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                             To="1.03" Duration="0:0:0.25">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </MultiDataTrigger.EnterActions>
+                                                <MultiDataTrigger.ExitActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
+                                                                             To="0" Duration="0:0:0.2">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
+                                                                             To="0" Duration="0:0:0.2">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                             To="1" Duration="0:0:0.2">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                             To="1" Duration="0:0:0.2">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <CubicEase EasingMode="EaseOut"/>
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </MultiDataTrigger.ExitActions>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ui:Button.Style>
+                            </ui:Button>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+
+                    <Border Style="{StaticResource Surface.Card}" Padding="20">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Style="{StaticResource Surface.IconTile}">
+                                    <ui:SymbolIcon Symbol="Server24"
+                                                   FontSize="18"
+                                                   Foreground="{DynamicResource Accent.Success.Brush}"/>
+                                </Border>
+
+                                <StackPanel Grid.Column="1"
+                                            Margin="14,0,12,0"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Style="{StaticResource Text.Overline}"
+                                               Text="{DynamicResource Lang.Profile.CurrentServer}"/>
+                                    <TextBlock x:Name="ServerNameText"
+                                               Style="{StaticResource Text.CardTitle}"
+                                               Margin="0,4,0,0"
+                                               Text="{Binding CurrentServerDisplay}"/>
+                                </StackPanel>
+
+                                <ui:Button Grid.Column="2"
+                                           Style="{StaticResource Button.Card.Action}"
+                                           Height="34"
+                                           Padding="14,0"
+                                           VerticalAlignment="Center"
+                                           Content="{DynamicResource Lang.Profile.Manage}"
+                                           Click="OnManageServersClick"/>
+                            </Grid>
+
+                            <Border Height="1"
+                                    Background="{DynamicResource DividerStrokeColorDefaultBrush}"
+                                    Margin="0,18,0,12"/>
+
+                            <TextBlock Style="{StaticResource Text.Caption}"
+                                       Text="{DynamicResource Lang.Profile.ServerHint}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource Surface.Card}"
+                            Padding="20"
+                            Margin="0,20,0,0">
+                        <StackPanel>
+                            <Grid>
+                                <TextBlock Style="{StaticResource Text.CardTitle}"
+                                           Text="{DynamicResource Lang.Profile.Traffic}"/>
+                                <Border Style="{StaticResource Surface.Pill}"
+                                        HorizontalAlignment="Right"
+                                        Padding="10,4">
+                                    <TextBlock Text="KB/s"
+                                               FontSize="11"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                </Border>
+                            </Grid>
+
+                            <Grid Margin="0,18,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="32" Height="32"
+                                            CornerRadius="{StaticResource Radius.Control}"
+                                            Background="{DynamicResource Accent.Traffic.Soft.Brush}">
+                                        <ui:SymbolIcon Symbol="ArrowDownload24"
+                                                       FontSize="14"
+                                                       Foreground="{DynamicResource Accent.Traffic.Brush}"/>
+                                    </Border>
+                                    <StackPanel Margin="10,0,0,0">
+                                        <TextBlock Style="{StaticResource Text.Overline}"
+                                                   Text="{DynamicResource Lang.Profile.Download}"/>
+                                        <TextBlock Style="{StaticResource Text.Metric}"
+                                                   FontSize="18"
+                                                   Margin="0,2,0,0"
+                                                   Text="{Binding Traffic.DownloadSpeed}"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Border Width="32" Height="32"
+                                            CornerRadius="{StaticResource Radius.Control}"
+                                            Background="{DynamicResource Accent.Success.Soft.Brush}">
+                                        <ui:SymbolIcon Symbol="ArrowUpload24"
+                                                       FontSize="14"
+                                                       Foreground="{DynamicResource Accent.Success.Brush}"/>
+                                    </Border>
+                                    <StackPanel Margin="10,0,0,0">
+                                        <TextBlock Style="{StaticResource Text.Overline}"
+                                                   Text="{DynamicResource Lang.Profile.Upload}"/>
+                                        <TextBlock Style="{StaticResource Text.Metric}"
+                                                   FontSize="18"
+                                                   Margin="0,2,0,0"
+                                                   Text="{Binding Traffic.UploadSpeed}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+
+                            <lvc:CartesianChart Height="78"
+                                                Margin="0,16,0,0"
+                                                Series="{Binding Traffic.Series}"
+                                                XAxes="{Binding Traffic.XAxes}"
+                                                YAxes="{Binding Traffic.YAxes}"
+                                                LegendPosition="Hidden"
+                                                TooltipPosition="Hidden"
+                                                AnimationsSpeed="0:0:0.25">
+                                <lvc:CartesianChart.Style>
+                                    <Style TargetType="lvc:CartesianChart">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Traffic.IsActive}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </lvc:CartesianChart.Style>
+                            </lvc:CartesianChart>
+
+                            <TextBlock Margin="0,12,0,0"
+                                       Text="{DynamicResource Lang.Profile.Traffic.Waiting}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource Text.Caption}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Traffic.IsActive}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
