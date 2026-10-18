@@ -107,8 +107,8 @@ namespace InvisibleManXRay.ViewModels
                     Values = DownloadPoints,
                     Stroke = new SolidColorPaint(downloadColor, ChartStrokeWidth)
                     {
-                        StrokeSkiaPaintStyle = SkiaSharp.SKPaintStyle.StrokeAndFill,
-                        AntiAlias = true
+                        Style = SkiaSharp.SKPaintStyle.StrokeAndFill,
+                        IsAntialias = true
                     },
                     Fill = new LinearGradientPaint(
                         downloadColor.WithAlpha(AreaFillTopAlpha),
@@ -117,7 +117,7 @@ namespace InvisibleManXRay.ViewModels
                         new SKPoint(0.5f, 1f)),
                     GeometrySize = 0,
                     LineSmoothness = ChartLineSmoothness,
-                    IsVisibleInLegend = false
+                    IsVisibleAtLegend = false
                 },
                 new LineSeries<double>
                 {
@@ -125,8 +125,8 @@ namespace InvisibleManXRay.ViewModels
                     Values = UploadPoints,
                     Stroke = new SolidColorPaint(uploadColor, ChartStrokeWidth)
                     {
-                        StrokeSkiaPaintStyle = SkiaSharp.SKPaintStyle.StrokeAndFill,
-                        AntiAlias = true
+                        Style = SkiaSharp.SKPaintStyle.StrokeAndFill,
+                        IsAntialias = true
                     },
                     Fill = new LinearGradientPaint(
                         uploadColor.WithAlpha((byte)(AreaFillTopAlpha / 2)),
@@ -135,7 +135,7 @@ namespace InvisibleManXRay.ViewModels
                         new SKPoint(0.5f, 1f)),
                     GeometrySize = 0,
                     LineSmoothness = ChartLineSmoothness,
-                    IsVisibleInLegend = false
+                    IsVisibleAtLegend = false
                 }
             };
 
