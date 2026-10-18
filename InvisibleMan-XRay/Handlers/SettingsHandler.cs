@@ -22,6 +22,7 @@ namespace InvisibleManXRay.Handlers
         public void UpdateUserSettings(UserSettings userSettings)
         {
             this.userSettings.Language = userSettings.Language;
+            this.userSettings.Theme = userSettings.Theme;
             this.userSettings.Mode = userSettings.Mode;
             this.userSettings.Protocol = userSettings.Protocol;
             this.userSettings.LogLevel = userSettings.LogLevel;
@@ -57,6 +58,15 @@ namespace InvisibleManXRay.Handlers
         public void UpdateMode(Mode mode)
         {
             userSettings.Mode = mode;
+            SaveUserSettings();
+        }
+
+        public void UpdateTheme(string theme)
+        {
+            if (string.Equals(userSettings.Theme, theme, System.StringComparison.OrdinalIgnoreCase))
+                return;
+
+            userSettings.Theme = theme;
             SaveUserSettings();
         }
 

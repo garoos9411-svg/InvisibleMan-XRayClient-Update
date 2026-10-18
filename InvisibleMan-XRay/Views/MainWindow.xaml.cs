@@ -46,10 +46,13 @@ namespace InvisibleManXRay
         private Func<string, Status> loadConfigAt;
         private Func<string, int> testConnection;
         private Action<string> onUpdateConfigPath;
+        private Action<string> onThemeChanged;
+        private Func<string> getTheme;
         private Action<ConnectionState> onConnectionStateChanged;
 
         private ProfileViewModel profileViewModel;
         private ServersViewModel serversViewModel;
+        private SettingsViewModel settingsViewModel;
         private ProfilePage currentProfilePage;
 
         private LocalizationService LocalizationService => ServiceLocator.Get<LocalizationService>();
@@ -91,6 +94,8 @@ namespace InvisibleManXRay
             Func<string, Status> loadConfigAt,
             Func<string, int> testConnection,
             Action<string> onUpdateConfigPath,
+            Action<string> onThemeChanged,
+            Func<string> getTheme,
             Action<ConnectionState> onConnectionStateChanged)
         {
             this.isNeedToShowPolicyWindow = isNeedToShowPolicyWindow;
@@ -121,6 +126,8 @@ namespace InvisibleManXRay
             this.loadConfigAt = loadConfigAt;
             this.testConnection = testConnection;
             this.onUpdateConfigPath = onUpdateConfigPath;
+            this.onThemeChanged = onThemeChanged;
+            this.getTheme = getTheme;
             this.onConnectionStateChanged = onConnectionStateChanged;
 
             profileViewModel = new ProfileViewModel();
@@ -147,6 +154,12 @@ namespace InvisibleManXRay
                 testConnection: testConnection
             );
             serversViewModel.ServerSelected += OnServerSelected;
+
+            settingsViewModel = new SettingsViewModel();
+            settingsViewModel.Setup(
+                getTheme: getTheme,
+                onThemeChanged: onThemeChanged
+            );
 
             UpdateUI();
         }
@@ -203,6 +216,10 @@ namespace InvisibleManXRay
 
             if (args.Page is SettingsPage settingsPage)
             {
+                settingsPage.DataContext = settingsViewModel;
+                settingsPage.OpenSettingsRequested -= OnOpenSettingsRequested;
+                settingsPage.OpenUpdateRequested -= OnOpenUpdateRequested;
+                settingsPage.OpenAboutRequested -= OnOpenAboutRequested;
                 settingsPage.OpenSettingsRequested += OnOpenSettingsRequested;
                 settingsPage.OpenUpdateRequested += OnOpenUpdateRequested;
                 settingsPage.OpenAboutRequested += OnOpenAboutRequested;
