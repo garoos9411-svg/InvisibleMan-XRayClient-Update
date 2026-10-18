@@ -190,7 +190,12 @@
     <system:String x:Key="Lang.Settings.Subtitle">کلاینت را برای خودتان دلپذیر کنید.</system:String>
     <system:String x:Key="Lang.Settings.Appearance">ظاهر</system:String>
     <system:String x:Key="Lang.Settings.Theme">تم</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Dark">تاریک</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Light">روشن</system:String>
+    <system:String x:Key="Lang.Settings.Theme.SystemMode">سیستم</system:String>
     <system:String x:Key="Lang.Settings.Theme.System">هماهنگ با ویندوز</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Dark.Description">پالت مشکی عمیق، راحت برای چشم در شب.</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Light.Description">سطوح روشن و سبک برای استفاده در روز.</system:String>
     <system:String x:Key="Lang.Settings.Theme.Description">پالت رنگ به‌صورت خودکار همراه با تم ویندوز بین روشن و تاریک تغییر می‌کند.</system:String>
     <system:String x:Key="Lang.Settings.Application">برنامه</system:String>
     <system:String x:Key="Lang.Settings.Open">تنظیمات پیشرفته</system:String>

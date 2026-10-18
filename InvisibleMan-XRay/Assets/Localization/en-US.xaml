@@ -190,7 +190,12 @@
     <system:String x:Key="Lang.Settings.Subtitle">Make the client feel like yours.</system:String>
     <system:String x:Key="Lang.Settings.Appearance">Appearance</system:String>
     <system:String x:Key="Lang.Settings.Theme">Theme</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Dark">Dark</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Light">Light</system:String>
+    <system:String x:Key="Lang.Settings.Theme.SystemMode">System</system:String>
     <system:String x:Key="Lang.Settings.Theme.System">Follows Windows</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Dark.Description">Deep obsidian palette, easy on the eyes at night.</system:String>
+    <system:String x:Key="Lang.Settings.Theme.Light.Description">Bright, airy surfaces for daylight sessions.</system:String>
     <system:String x:Key="Lang.Settings.Theme.Description">The palette switches between light and dark automatically with your system theme.</system:String>
     <system:String x:Key="Lang.Settings.Application">Application</system:String>
     <system:String x:Key="Lang.Settings.Open">Advanced settings</system:String>
