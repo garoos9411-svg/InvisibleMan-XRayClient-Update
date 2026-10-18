@@ -78,14 +78,9 @@
                 Viewport="0,0,160,160"
                 ViewportUnits="Absolute"/>
 
-    <!-- Elevation shadows -->
-    <x:Double x:Key="Shadow.Soft.Blur">24</x:Double>
-    <x:Double x:Key="Shadow.Soft.Opacity">0.32</x:Double>
-
-    <!-- Glow parameters (hero connect button) -->
-    <x:Double x:Key="Glow.Hero.Blur">26</x:Double>
-    <x:Double x:Key="Glow.Hero.Opacity">0.55</x:Double>
-    <x:Double x:Key="Lift.Hero">1.03</x:Double>
+    <!-- Elevation shadow values are inlined in Surface.Card below; animation
+         glow/lift values live in PremiumTheme storyboards (Freezable To/From
+         attributes do not accept markup extensions). -->
 
     <!-- Radii -->
     <CornerRadius x:Key="Radius.Card">12</CornerRadius>
@@ -103,10 +98,10 @@
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect Color="#000000"
-                                  BlurRadius="{StaticResource Shadow.Soft.Blur}"
+                                  BlurRadius="24"
                                   ShadowDepth="2"
                                   Direction="270"
-                                  Opacity="{StaticResource Shadow.Soft.Opacity}"
+                                  Opacity="0.32"
                                   RenderingBias="Performance"/>
             </Setter.Value>
         </Setter>
