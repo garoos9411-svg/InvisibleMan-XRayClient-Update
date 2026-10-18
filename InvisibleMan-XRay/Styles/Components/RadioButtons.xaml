@@ -70,7 +70,9 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                            <DoubleAnimation Storyboard.TargetName="Dot"
+                                             Storyboard.TargetProperty="Opacity"
+                                             To="1"
                                              Duration="0:0:0.18">
                                 <DoubleAnimation.EasingFunction>
                                     <CubicEase EasingMode="EaseOut"/>
