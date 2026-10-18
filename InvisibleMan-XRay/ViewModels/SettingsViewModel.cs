@@ -19,9 +19,12 @@ namespace InvisibleManXRay.ViewModels
             this.getTheme = getTheme;
             this.onThemeChanged = onThemeChanged;
 
-            ThemeMode = getTheme != null
+            // Set the backing field directly to avoid triggering OnThemeModeChanged
+            // (and therefore ThemeUtility.Apply + onThemeChanged) during initialization.
+            themeMode = getTheme != null
                 ? ThemeUtility.Parse(getTheme.Invoke())
                 : AppThemeMode.Dark;
+            OnPropertyChanged(nameof(ThemeMode));
         }
 
         partial void OnThemeModeChanged(AppThemeMode value)
