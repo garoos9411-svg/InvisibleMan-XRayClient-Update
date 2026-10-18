@@ -221,6 +221,9 @@ namespace InvisibleManXRay
             if (args.Page is SettingsPage settingsPage)
             {
                 settingsPage.DataContext = settingsViewModel;
+                settingsPage.OpenSettingsRequested -= OnOpenSettingsRequested;
+                settingsPage.OpenUpdateRequested -= OnOpenUpdateRequested;
+                settingsPage.OpenAboutRequested -= OnOpenAboutRequested;
                 settingsPage.OpenSettingsRequested += OnOpenSettingsRequested;
                 settingsPage.OpenUpdateRequested += OnOpenUpdateRequested;
                 settingsPage.OpenAboutRequested += OnOpenAboutRequested;
