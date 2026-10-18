@@ -279,7 +279,7 @@
         </Setter>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="{DynamicResource Accent.Success.Color}"
+                <DropShadowEffect Color="{StaticResource Accent.Success.Color}"
                                   BlurRadius="0"
                                   ShadowDepth="0"
                                   Direction="0"
