@@ -2,28 +2,28 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
 
-    <!-- Accent palette -->
-    <Color x:Key="Accent.Success.Color">#00FF88</Color>
-    <Color x:Key="Accent.Traffic.Color">#00D4FF</Color>
-    <Color x:Key="Accent.Danger.Color">#FF3B5C</Color>
+    <!-- Accent palette: Emerald (connection/success) + Sapphire-cyan (traffic) -->
+    <Color x:Key="Accent.Success.Color">#10B981</Color>
+    <Color x:Key="Accent.Traffic.Color">#38BDF8</Color>
+    <Color x:Key="Accent.Danger.Color">#F43F5E</Color>
 
     <SolidColorBrush x:Key="Accent.Success.Brush" Color="{StaticResource Accent.Success.Color}"/>
-    <SolidColorBrush x:Key="Accent.Success.Soft.Brush" Color="#2600FF88"/>
-    <SolidColorBrush x:Key="Accent.Success.Border.Brush" Color="#5900FF88"/>
+    <SolidColorBrush x:Key="Accent.Success.Soft.Brush" Color="#2610B981"/>
+    <SolidColorBrush x:Key="Accent.Success.Border.Brush" Color="#5910B981"/>
 
     <SolidColorBrush x:Key="Accent.Traffic.Brush" Color="{StaticResource Accent.Traffic.Color}"/>
-    <SolidColorBrush x:Key="Accent.Traffic.Soft.Brush" Color="#1F00D4FF"/>
-    <SolidColorBrush x:Key="Accent.Traffic.Border.Brush" Color="#4D00D4FF"/>
+    <SolidColorBrush x:Key="Accent.Traffic.Soft.Brush" Color="#1F38BDF8"/>
+    <SolidColorBrush x:Key="Accent.Traffic.Border.Brush" Color="#4D38BDF8"/>
 
     <SolidColorBrush x:Key="Accent.Danger.Brush" Color="{StaticResource Accent.Danger.Color}"/>
-    <SolidColorBrush x:Key="Accent.Danger.Soft.Brush" Color="#26FF3B5C"/>
-    <SolidColorBrush x:Key="Accent.Danger.Border.Brush" Color="#59FF3B5C"/>
+    <SolidColorBrush x:Key="Accent.Danger.Soft.Brush" Color="#26F43F5E"/>
+    <SolidColorBrush x:Key="Accent.Danger.Border.Brush" Color="#59F43F5E"/>
 
     <!-- Hero button -->
-    <Color x:Key="Accent.Success.Deep.Color">#00C46A</Color>
-    <Color x:Key="Accent.Success.Bright.Color">#4DFFA6</Color>
-    <Color x:Key="Accent.Success.Pressed.Color">#00A85F</Color>
-    <Color x:Key="Text.On.Accent.Color">#05261A</Color>
+    <Color x:Key="Accent.Success.Deep.Color">#059669</Color>
+    <Color x:Key="Accent.Success.Bright.Color">#34D399</Color>
+    <Color x:Key="Accent.Success.Pressed.Color">#047857</Color>
+    <Color x:Key="Text.On.Accent.Color">#04211A</Color>
 
     <SolidColorBrush x:Key="Text.On.Accent.Brush" Color="{StaticResource Text.On.Accent.Color}"/>
 
@@ -44,30 +44,30 @@
 
     <!-- Gradients -->
     <LinearGradientBrush x:Key="Accent.Hero.Ring" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#00FF88" Offset="0"/>
-        <GradientStop Color="#00D4FF" Offset="1"/>
+        <GradientStop Color="{StaticResource Accent.Success.Color}" Offset="0"/>
+        <GradientStop Color="{StaticResource Accent.Traffic.Color}" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Accent.Hero.Background" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#1A00FF88" Offset="0"/>
-        <GradientStop Color="#0F00D4FF" Offset="0.55"/>
-        <GradientStop Color="#0000D4FF" Offset="1"/>
+        <GradientStop Color="#1A10B981" Offset="0"/>
+        <GradientStop Color="#0F38BDF8" Offset="0.55"/>
+        <GradientStop Color="#0038BDF8" Offset="1"/>
     </LinearGradientBrush>
 
     <RadialGradientBrush x:Key="Accent.Hero.Glow" GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
-        <GradientStop Color="#3300FF88" Offset="0"/>
-        <GradientStop Color="#1400D4FF" Offset="0.6"/>
-        <GradientStop Color="#0000D4FF" Offset="1"/>
+        <GradientStop Color="#3310B981" Offset="0"/>
+        <GradientStop Color="#1438BDF8" Offset="0.6"/>
+        <GradientStop Color="#0038BDF8" Offset="1"/>
     </RadialGradientBrush>
 
     <LinearGradientBrush x:Key="Accent.Chart.Area" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#3800D4FF" Offset="0"/>
-        <GradientStop Color="#0000D4FF" Offset="1"/>
+        <GradientStop Color="#3838BDF8" Offset="0"/>
+        <GradientStop Color="#0038BDF8" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Accent.Chart.Line" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Color="#00FF88" Offset="0"/>
-        <GradientStop Color="#00D4FF" Offset="1"/>
+        <GradientStop Color="{StaticResource Accent.Success.Color}" Offset="0"/>
+        <GradientStop Color="{StaticResource Accent.Traffic.Color}" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Texture -->
@@ -77,6 +77,15 @@
                 TileMode="Tile"
                 Viewport="0,0,160,160"
                 ViewportUnits="Absolute"/>
+
+    <!-- Elevation shadows -->
+    <x:Double x:Key="Shadow.Soft.Blur">24</x:Double>
+    <x:Double x:Key="Shadow.Soft.Opacity">0.32</x:Double>
+
+    <!-- Glow parameters (hero connect button) -->
+    <x:Double x:Key="Glow.Hero.Blur">26</x:Double>
+    <x:Double x:Key="Glow.Hero.Opacity">0.55</x:Double>
+    <x:Double x:Key="Lift.Hero">1.03</x:Double>
 
     <!-- Radii -->
     <CornerRadius x:Key="Radius.Card">12</CornerRadius>
@@ -91,6 +100,16 @@
         <Setter Property="CornerRadius" Value="{StaticResource Radius.Card}"/>
         <Setter Property="Padding" Value="24"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#000000"
+                                  BlurRadius="{StaticResource Shadow.Soft.Blur}"
+                                  ShadowDepth="2"
+                                  Direction="270"
+                                  Opacity="{StaticResource Shadow.Soft.Opacity}"
+                                  RenderingBias="Performance"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="Surface.Pill" TargetType="Border">

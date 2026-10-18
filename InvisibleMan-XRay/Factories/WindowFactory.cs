@@ -63,6 +63,8 @@ namespace InvisibleManXRay.Factories
                 loadConfigAt: core.LoadConfig,
                 testConnection: core.Test,
                 onUpdateConfigPath: UpdateCurrentConfigPath,
+                onThemeChanged: settingsHandler.UpdateTheme,
+                getTheme: settingsHandler.UserSettings.GetTheme,
                 onConnectionStateChanged: notifyHandler.SetConnectionState
             );
 

@@ -87,6 +87,13 @@ namespace InvisibleManXRay.ViewModels
             OnStatsUpdated(0, 0, clear: true);
         }
 
+        // Premium chart tuning: hairline strokes, deep gradient washes,
+        // heavy smoothing and zero visual noise (no grid, no axes, no points).
+        private const float ChartStrokeWidth = 1.75f;
+        private const double ChartLineSmoothness = 0.85;
+        private const byte AreaFillTopAlpha = 0x40;
+        private const byte AreaFillBottomAlpha = 0x00;
+
         private void BuildChart()
         {
             SKColor downloadColor = ResolveColor("Accent.Traffic.Color");
@@ -98,27 +105,37 @@ namespace InvisibleManXRay.ViewModels
                 {
                     Name = LocalizationService.GetTerm(Localization.PROFILE_DOWNLOAD),
                     Values = DownloadPoints,
-                    Stroke = new SolidColorPaint(downloadColor, 2f),
+                    Stroke = new SolidColorPaint(downloadColor, ChartStrokeWidth)
+                    {
+                        StrokeSkiaPaintStyle = SkiaSharp.SKPaintStyle.StrokeAndFill,
+                        AntiAlias = true
+                    },
                     Fill = new LinearGradientPaint(
-                        downloadColor.WithAlpha(0x38),
-                        downloadColor.WithAlpha(0x00),
+                        downloadColor.WithAlpha(AreaFillTopAlpha),
+                        downloadColor.WithAlpha(AreaFillBottomAlpha),
                         new SKPoint(0.5f, 0f),
                         new SKPoint(0.5f, 1f)),
                     GeometrySize = 0,
-                    LineSmoothness = 0.6
+                    LineSmoothness = ChartLineSmoothness,
+                    IsVisibleInLegend = false
                 },
                 new LineSeries<double>
                 {
                     Name = LocalizationService.GetTerm(Localization.PROFILE_UPLOAD),
                     Values = UploadPoints,
-                    Stroke = new SolidColorPaint(uploadColor, 2f),
+                    Stroke = new SolidColorPaint(uploadColor, ChartStrokeWidth)
+                    {
+                        StrokeSkiaPaintStyle = SkiaSharp.SKPaintStyle.StrokeAndFill,
+                        AntiAlias = true
+                    },
                     Fill = new LinearGradientPaint(
-                        uploadColor.WithAlpha(0x2E),
-                        uploadColor.WithAlpha(0x00),
+                        uploadColor.WithAlpha((byte)(AreaFillTopAlpha / 2)),
+                        uploadColor.WithAlpha(AreaFillBottomAlpha),
                         new SKPoint(0.5f, 0f),
                         new SKPoint(0.5f, 1f)),
                     GeometrySize = 0,
-                    LineSmoothness = 0.6
+                    LineSmoothness = ChartLineSmoothness,
+                    IsVisibleInLegend = false
                 }
             };
 
