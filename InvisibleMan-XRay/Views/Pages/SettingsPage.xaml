@@ -62,7 +62,6 @@
                                                Text="{DynamicResource Lang.Settings.Theme}"/>
                                 </StackPanel>
 
-                                <!-- Current mode pill: content driven by SettingsViewModel.ThemeMode -->
                                 <Border Grid.Column="2"
                                         Style="{StaticResource Surface.Pill}"
                                         Padding="10,5"
@@ -118,7 +117,6 @@
                                 </TextBlock.Style>
                             </TextBlock>
 
-                            <!-- Segmented theme selector (pure MVVM: binds to ThemeMode + commands) -->
                             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
                                 <RadioButton GroupName="AppTheme"
                                              Style="{StaticResource Radio.ThemeCard}"
@@ -213,7 +211,7 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Margin="{StaticResource Space.Gutter},0,0,0">
+                <StackPanel Grid.Column="1" Margin="{StaticResource Space.Gutter}">
                     <Border Style="{StaticResource Surface.Card}" Padding="{StaticResource Space.Card}">
                         <StackPanel>
                             <TextBlock Style="{StaticResource Text.CardTitle}"
