@@ -47,16 +47,17 @@ namespace InvisibleManXRay.Utilities
         {
             ApplicationTheme theme = Resolve(mode);
 
-            // updateWpfuiTheme: true -> repaints all WPF-UI controls,
-            // forceBackground: false -> lets the active backdrop (Mica) show through.
-            ApplicationThemeManager.Apply(theme, updateWpfuiTheme: true, forceBackground: false);
+            // WPF-UI 3.1.1 exposes the overload with forceBackground, not
+            // the older updateWpfuiTheme flag used in newer examples.
+            ApplicationThemeManager.Apply(theme, forceBackground: false);
         }
 
         private static ApplicationTheme DetectSystemTheme()
         {
             try
             {
-                return ApplicationThemeManager.GetMatchedSystemTheme();
+                SystemTheme systemTheme = ApplicationThemeManager.GetSystemTheme();
+                return systemTheme == SystemTheme.Dark ? ApplicationTheme.Dark : ApplicationTheme.Light;
             }
             catch
             {
