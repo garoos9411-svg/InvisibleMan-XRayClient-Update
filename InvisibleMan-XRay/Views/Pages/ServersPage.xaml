@@ -11,89 +11,12 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
 
         <DataTemplate x:Key="ServerCardTemplate">
+            <!-- Premium server card: hover glow + lift micro-animation lives in
+                 the shared Card.Interactive style (PremiumTheme.xaml) — no magic
+                 numbers or inline storyboards here. -->
             <Border Padding="18"
                     Margin="0,0,0,10"
-                    Cursor="Hand"
-                    RenderTransformOrigin="0.5,0.5">
-                <Border.RenderTransform>
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
-                </Border.RenderTransform>
-                <Border.Effect>
-                    <DropShadowEffect Color="{DynamicResource Accent.Traffic.Color}"
-                                      BlurRadius="0"
-                                      ShadowDepth="0"
-                                      Direction="0"
-                                      Opacity="0"
-                                      RenderingBias="Performance"/>
-                </Border.Effect>
-                <Border.Style>
-                    <Style TargetType="Border" BasedOn="{StaticResource Surface.Card}">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
-                                                             To="18" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
-                                                             To="0.28" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                             To="1.01" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                                             To="1.01" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                                <Trigger.ExitActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
-                                                             To="0" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
-                                                             To="0" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                             To="1" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                                             To="1" Duration="0:0:0.2">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.ExitActions>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
+                    Style="{StaticResource Card.Interactive}">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
