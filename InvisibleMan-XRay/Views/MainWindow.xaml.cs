@@ -12,6 +12,7 @@ namespace InvisibleManXRay
     using Services;
     using Services.Analytics.General;
     using Services.Analytics.MainWindow;
+    using Utilities;
     using Values;
     using ViewModels;
     using Views.Pages;
@@ -160,6 +161,9 @@ namespace InvisibleManXRay
                 getTheme: getTheme,
                 onThemeChanged: onThemeChanged
             );
+
+            // Paint the shell with the persisted palette before it becomes visible.
+            ApplicationThemeManager.Apply(ThemeUtility.Resolve(settingsViewModel.ThemeMode));
 
             UpdateUI();
         }

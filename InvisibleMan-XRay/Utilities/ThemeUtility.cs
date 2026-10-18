@@ -1,5 +1,7 @@
 using System;
+using System.Windows;
 using Wpf.Ui.Appearance;
+using Wpf.Ui.Controls;
 
 namespace InvisibleManXRay.Utilities
 {
@@ -13,6 +15,9 @@ namespace InvisibleManXRay.Utilities
 
         public static AppThemeMode Parse(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return AppThemeMode.Dark;
+
             if (Enum.TryParse(name, ignoreCase: true, out AppThemeMode mode))
                 return mode;
 
@@ -26,23 +31,31 @@ namespace InvisibleManXRay.Utilities
             _ => DARK
         };
 
-        public static void Apply(AppThemeMode mode)
+        public static ApplicationTheme Resolve(AppThemeMode mode) => mode switch
         {
-            ApplicationTheme theme = mode switch
-            {
-                AppThemeMode.Light => ApplicationTheme.Light,
-                AppThemeMode.System => DetectSystemTheme(),
-                _ => ApplicationTheme.Dark
-            };
+            AppThemeMode.Light => ApplicationTheme.Light,
+            AppThemeMode.System => DetectSystemTheme(),
+            _ => ApplicationTheme.Dark
+        };
 
-            ThemeManagement.Apply(theme, BackgroundType.Mica);
+        /// <summary>
+        /// Re-evaluates the current backdrop of every open window so the
+        /// Mica material stays in sync with the freshly applied palette.
+        /// </summary>
+        public static void RefreshWindowBackdrops()
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is FluentWindow fluentWindow)
+                    fluentWindow.RefreshBackdrop();
+            }
         }
 
         private static ApplicationTheme DetectSystemTheme()
         {
             try
             {
-                return ThemeManagement.GetActualTheme();
+                return ApplicationThemeManager.GetMatchedSystemTheme();
             }
             catch
             {
