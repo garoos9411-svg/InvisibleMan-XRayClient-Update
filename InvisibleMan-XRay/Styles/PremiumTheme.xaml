@@ -35,15 +35,9 @@
     <CubicEase x:Key="Ease.Out" EasingMode="EaseOut"/>
     <SineEase x:Key="Ease.InOut" EasingMode="EaseInOut"/>
 
-    <!-- Glow / lift parameters (WPF XAML has no x:Double element).
-         NOTE: these are consumed by Storyboard To/From attributes, which do
-         NOT support markup extensions ({x:Static} would fail at runtime) —
-         so the values are inlined here and referenced nowhere else. -->
-    <sys:Double x:Key="Glow.Card.Blur">18</sys:Double>
-    <sys:Double x:Key="Glow.Card.Opacity">0.28</sys:Double>
-    <sys:Double x:Key="Lift.Card">1.01</sys:Double>
-    <sys:Double x:Key="Breathe.From">0.45</sys:Double>
-    <sys:Double x:Key="Breathe.To">0.95</sys:Double>
+    <!-- Glow / lift animation values are intentionally inlined in the
+         storyboards below: Freezable animation properties (To/From) do not
+         accept markup extensions, so they cannot reference resource keys. -->
 
     <!-- Card hover: soft accent glow + subtle lift -->
     <Style x:Key="Card.Interactive" TargetType="Border" BasedOn="{StaticResource Surface.Card}">
@@ -69,11 +63,11 @@
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
                                              To="18"
                                              Duration="{StaticResource Anim.Normal}"
                                              EasingFunction="{StaticResource Ease.Out}"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
                                              To="0.28"
                                              Duration="{StaticResource Anim.Normal}"
                                              EasingFunction="{StaticResource Ease.Out}"/>
@@ -91,11 +85,11 @@
                 <Trigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
                                              To="0"
                                              Duration="{StaticResource Anim.Fast}"
                                              EasingFunction="{StaticResource Ease.Out}"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
                                              To="0"
                                              Duration="{StaticResource Anim.Fast}"
                                              EasingFunction="{StaticResource Ease.Out}"/>
@@ -327,11 +321,11 @@
                 <MultiDataTrigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
                                              To="26"
                                              Duration="{StaticResource Anim.Normal}"
                                              EasingFunction="{StaticResource Ease.Out}"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
                                              To="0.55"
                                              Duration="{StaticResource Anim.Normal}"
                                              EasingFunction="{StaticResource Ease.Out}"/>
@@ -349,11 +343,11 @@
                 <MultiDataTrigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).BlurRadius"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
                                              To="0"
                                              Duration="{StaticResource Anim.Fast}"
                                              EasingFunction="{StaticResource Ease.Out}"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).Opacity"
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
                                              To="0"
                                              Duration="{StaticResource Anim.Fast}"
                                              EasingFunction="{StaticResource Ease.Out}"/>

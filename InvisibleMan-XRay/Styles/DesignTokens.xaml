@@ -79,15 +79,9 @@
                 Viewport="0,0,160,160"
                 ViewportUnits="Absolute"/>
 
-    <!-- Elevation shadows / glow parameters (hero connect button).
-         NOTE: WPF XAML has no x:Double element — these are System.Double
-         resources declared via xmlns:System, referenced with {x:Static}. -->
-    <sys:Double x:Key="Shadow.Soft.Blur">24</sys:Double>
-    <sys:Double x:Key="Shadow.Soft.Opacity">0.32</sys:Double>
-
-    <sys:Double x:Key="Glow.Hero.Blur">26</sys:Double>
-    <sys:Double x:Key="Glow.Hero.Opacity">0.55</sys:Double>
-    <sys:Double x:Key="Lift.Hero">1.03</sys:Double>
+    <!-- Elevation shadow values are inlined in Surface.Card below; animation
+         glow/lift values live in PremiumTheme storyboards (Freezable To/From
+         attributes do not accept markup extensions). -->
 
     <!-- Radii -->
     <CornerRadius x:Key="Radius.Card">12</CornerRadius>
