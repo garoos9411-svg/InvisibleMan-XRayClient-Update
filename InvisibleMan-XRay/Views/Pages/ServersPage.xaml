@@ -318,8 +318,8 @@
             </StackPanel>
 
             <Border Style="{StaticResource Surface.Card}"
-                    Padding="20"
-                    Margin="0,20,0,0">
+                    Padding="{StaticResource Space.Card}"
+                    Margin="{StaticResource Space.SectionTop}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
